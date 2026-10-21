@@ -115,6 +115,15 @@
     color: var(--gold-light);
   }
   .counter { text-align: center; font-size: 13px; color: var(--muted); padding: 6px 0 10px; letter-spacing: 1px; }
+  .speak-btn {
+    margin-top: 10px;
+    padding: 7px 16px;
+    font-size: 13px;
+    background: rgba(212,160,23,.2);
+    border: 1px solid rgba(212,160,23,.5);
+    color: var(--gold-light);
+  }
+  .speak-btn:hover { background: rgba(212,160,23,.35); }
 
   /* 时间轴控制 */
   .timeline {
@@ -156,8 +165,101 @@
     transition: transform .1s, background .2s;
   }
   button:hover { background: #e0223a; transform: scale(1.04); }
+  button:disabled { background: #5a4a4a; cursor: not-allowed; transform: none; }
   .tl-current { margin-top: 12px; font-size: 14px; color: #f0e2c8; text-align: center; }
   .tl-current b { color: var(--gold-light); }
+
+  /* 勋章墙 */
+  .badges {
+    margin-top: 18px;
+    background: linear-gradient(180deg, rgba(40,12,18,.85), rgba(30,8,13,.85));
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 16px;
+    padding: 18px 22px;
+  }
+  .badges-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .badges-head h3 { font-size: 18px; color: #fff; letter-spacing: 2px; }
+  .badges-head .progress-text { font-size: 14px; color: var(--gold-light); }
+  .badge-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; justify-content: center; }
+  .badge {
+    width: 74px;
+    text-align: center;
+    cursor: pointer;
+    opacity: .35;
+    filter: grayscale(1);
+    transition: transform .2s, opacity .2s, filter .2s;
+  }
+  .badge .ico { font-size: 30px; display: block; }
+  .badge .nm { font-size: 11px; color: #e8d5b0; margin-top: 4px; line-height: 1.3; }
+  .badge.earned { opacity: 1; filter: none; }
+  .badge.earned:hover { transform: scale(1.12); }
+  .badge:not(.earned) .ico { filter: grayscale(1) brightness(.5); }
+
+  /* 竖向大事记 */
+  .events {
+    margin-top: 18px;
+    background: linear-gradient(180deg, rgba(40,12,18,.85), rgba(30,8,13,.85));
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .events h3 { font-size: 18px; color: #fff; letter-spacing: 2px; margin-bottom: 18px; }
+  .event { display: flex; gap: 16px; position: relative; padding-bottom: 22px; }
+  .event::before {
+    content: ''; position: absolute; left: 7px; top: 20px; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--gold), rgba(212,160,23,.2));
+  }
+  .event:last-child::before { display: none; }
+  .event .dot {
+    flex: 0 0 auto; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--red); border: 2px solid var(--gold);
+    position: relative; z-index: 1; margin-top: 4px;
+  }
+  .event .ev-body { flex: 1; cursor: pointer; }
+  .event .ev-date { font-size: 13px; color: var(--gold-light); letter-spacing: 1px; }
+  .event .ev-name { font-size: 17px; color: #fff; margin: 2px 0 4px; letter-spacing: 1px; }
+  .event .ev-desc { font-size: 13.5px; color: #c9bda6; line-height: 1.8; }
+  .event:hover .ev-name { color: var(--gold-light); }
+
+  /* 知识问答 */
+  .quiz {
+    margin-top: 18px;
+    background: linear-gradient(180deg, rgba(40,12,18,.85), rgba(30,8,13,.85));
+    border: 1px solid rgba(212,160,23,.3);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .quiz h3 { font-size: 18px; color: #fff; letter-spacing: 2px; margin-bottom: 4px; }
+  .quiz .quiz-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .quiz-box {
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(212,160,23,.2);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .quiz-q { font-size: 17px; color: #fff; margin-bottom: 14px; line-height: 1.6; }
+  .quiz-q .num { color: var(--gold-light); margin-right: 6px; }
+  .quiz-opts { display: flex; flex-direction: column; gap: 10px; }
+  .opt {
+    text-align: left;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(212,160,23,.25);
+    color: #e8d5b0;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all .15s;
+    letter-spacing: 1px;
+  }
+  .opt:hover { background: rgba(212,160,23,.12); border-color: var(--gold); }
+  .opt.correct { background: rgba(40,160,70,.3); border-color: #28a745; color: #a5e8b0; }
+  .opt.wrong { background: rgba(200,16,46,.35); border-color: var(--red); color: #ffc2c2; }
+  .opt:disabled { cursor: not-allowed; }
+  .quiz-result { margin-top: 16px; text-align: center; }
+  .quiz-result .score { font-size: 30px; color: var(--gold-light); font-family: Georgia, serif; }
+  .quiz-result .msg { font-size: 15px; color: #e8d5b0; margin-top: 4px; }
+  .quiz-actions { display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap; }
 
   .quote {
     margin-top: 22px;
@@ -195,7 +297,6 @@
   <div class="main">
     <div class="map-card">
       <svg viewBox="0 0 900 620" role="img" aria-label="红军长征路线示意地图">
-        <!-- 省份示意标注 -->
         <text class="province" x="728" y="585">江 西</text>
         <text class="province" x="610" y="555">湖 南</text>
         <text class="province" x="500" y="585">广 西</text>
@@ -204,15 +305,9 @@
         <text class="province" x="215" y="455">四 川</text>
         <text class="province" x="215" y="300">甘 肃</text>
         <text class="province" x="430" y="190">陕 西</text>
-
-        <!-- 长征路线 -->
         <path class="route-shadow" id="routeShadow" d="M720,545 C660,543 615,536 575,530 C535,524 492,514 455,505 C428,499 414,491 400,485 C368,477 348,482 330,485 C306,474 294,454 285,435 C275,419 266,408 258,400 C248,374 240,354 235,335 C246,311 259,293 275,278 C300,255 335,240 370,225 C350,218 320,210 300,200"/>
         <path class="route" id="route" d="M720,545 C660,543 615,536 575,530 C535,524 492,514 455,505 C428,499 414,491 400,485 C368,477 348,482 330,485 C306,474 294,454 285,435 C275,419 266,408 258,400 C248,374 240,354 235,335 C246,311 259,293 275,278 C300,255 335,240 370,225 C350,218 320,210 300,200"/>
-
-        <!-- 节点由 JS 渲染 -->
         <g id="nodes"></g>
-
-        <!-- 移动标记 -->
         <circle class="marker" id="marker" cx="720" cy="545" r="9"/>
       </svg>
     </div>
@@ -225,6 +320,7 @@
       <div class="panel-body">
         <p id="pDesc"></p>
         <div class="tags" id="pTags"></div>
+        <button class="speak-btn" id="speakBtn">🔊 语音讲解</button>
       </div>
       <div class="counter" id="pCounter"></div>
     </div>
@@ -239,6 +335,25 @@
     <div class="tl-current" id="tlCurrent"></div>
   </div>
 
+  <div class="badges">
+    <div class="badges-head">
+      <h3>🎖 长征足迹 · 勋章收集</h3>
+      <div class="progress-text" id="badgeProgress"></div>
+    </div>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+
+  <div class="events">
+    <h3>📜 长征大事记</h3>
+    <div id="eventsList"></div>
+  </div>
+
+  <div class="quiz">
+    <h3>🧠 长征知识问答</h3>
+    <div class="quiz-sub">答完 10 道题,看看你能得多少分</div>
+    <div class="quiz-box" id="quizBox"></div>
+  </div>
+
   <div class="quote">
     <span class="big">“</span>长征是宣言书，长征是宣传队，长征是播种机。<span class="big">”</span><br>
     每一代人都有每一代人的长征路，每一代人都要走好自己的长征路。
@@ -250,37 +365,37 @@
 (function () {
   // 关键节点数据（坐标与路线 path 对应，t 为路线进度 0~1）
   const nodes = [
-    { name: '瑞金出发',   date: '1934年10月',   x: 720, y: 545, t: 0.00, kind: 'start',
+    { name: '瑞金出发',   date: '1934年10月',   x: 720, y: 545, t: 0.00, kind: 'start', ico: '🚩',
       desc: '1934年10月，由于第五次反"围剿"失利，中央红军8.6万余人告别中央苏区，从江西瑞金等地出发，踏上战略转移的漫漫征途，拉开了长征的序幕。',
       tags: ['战略转移', '中央红军', '8.6万余人'] },
-    { name: '血战湘江',   date: '1934年11—12月', x: 575, y: 530, t: 0.12,
+    { name: '血战湘江',   date: '1934年11—12月', x: 575, y: 530, t: 0.12, ico: '⚔️',
       desc: '红军连续突破国民党军四道封锁线，在湘江一带遭遇重兵围堵，展开殊死血战。此役红军由出发时的8.6万余人锐减至3万余人，是长征中最惨烈的一战，也促使党内开始反思错误路线。',
       tags: ['突破封锁', '湘江血战', '锐减至3万'] },
-    { name: '遵义会议',   date: '1935年1月',     x: 455, y: 505, t: 0.25, kind: 'key',
+    { name: '遵义会议',   date: '1935年1月',     x: 455, y: 505, t: 0.25, kind: 'key', ico: '⭐',
       desc: '1935年1月，中共中央在贵州遵义召开政治局扩大会议，纠正了"左"倾军事错误，事实上确立了毛泽东同志在党中央和红军的领导地位。遵义会议在最危急的关头挽救了党、挽救了红军、挽救了中国革命，是党的历史上生死攸关的转折点。',
       tags: ['伟大转折', '确立正确路线', '遵义'] },
-    { name: '四渡赤水',   date: '1935年1—3月',   x: 400, y: 485, t: 0.34,
+    { name: '四渡赤水',   date: '1935年1—3月',   x: 400, y: 485, t: 0.34, ico: '🌊',
       desc: '遵义会议后，毛泽东指挥红军在川黔滇边境灵活穿插，四渡赤水河，声东击西、佯攻诱敌，成功跳出了数十万敌军的围追堵截，是运动战的经典范例，被誉为毛泽东军事生涯的"得意之笔"。',
       tags: ['运动战典范', '声东击西', '得意之笔'] },
-    { name: '巧渡金沙江', date: '1935年5月',     x: 330, y: 485, t: 0.45,
+    { name: '巧渡金沙江', date: '1935年5月',     x: 330, y: 485, t: 0.45, ico: '🚣',
       desc: '红军兵分多路佯动，主力巧渡金沙江，彻底摆脱了优势敌军的追击，掌握了战略主动权，标志着红军取得了战略转移中具有决定意义的胜利。',
       tags: ['跳出包围圈', '战略主动', '金沙江'] },
-    { name: '飞夺泸定桥', date: '1935年5月29日', x: 285, y: 435, t: 0.56,
+    { name: '飞夺泸定桥', date: '1935年5月29日', x: 285, y: 435, t: 0.56, ico: '🌉',
       desc: '大渡河上，红军先头部队昼夜兼程240里，22名勇士攀踏着被敌人抽去桥板的铁索，冒着枪林弹雨冲向对岸，一举夺下泸定桥，创造了人类战争史上的奇迹。',
       tags: ['22勇士', '铁索桥', '240里急行军'] },
-    { name: '翻越夹金山', date: '1935年6月',     x: 258, y: 400, t: 0.64,
+    { name: '翻越夹金山', date: '1935年6月',     x: 258, y: 400, t: 0.64, ico: '🏔️',
       desc: '夹金山海拔4000多米，终年积雪、空气稀薄。红军战士以顽强的意志翻越了长征途中的第一座大雪山，许多战士把生命永远留在了雪山上。',
       tags: ['大雪山', '4000米', '顽强意志'] },
-    { name: '穿越草地',   date: '1935年8月',     x: 235, y: 335, t: 0.73,
+    { name: '穿越草地',   date: '1935年8月',     x: 235, y: 335, t: 0.73, ico: '🌾',
       desc: '松潘草地泥潭遍布、气候无常、缺粮断炊。红军靠吃野菜、树皮、皮带充饥，历经七天七夜的生死考验，走出了"死亡之地"，留下无数感人至深的故事。',
       tags: ['松潘草地', '野菜充饥', '生死考验'] },
-    { name: '腊子口战役', date: '1935年9月',     x: 275, y: 278, t: 0.82,
+    { name: '腊子口战役', date: '1935年9月',     x: 275, y: 278, t: 0.82, ico: '🏰',
       desc: '腊子口是川甘交界的险要关隘，红军突破天险腊子口，打通了北上甘南的通道，为红军进入陕甘地区、开创新的根据地创造了条件。',
       tags: ['天险腊子口', '打通通道', '北上甘南'] },
-    { name: '吴起镇会师', date: '1935年10月',    x: 370, y: 225, t: 0.90, kind: 'key',
+    { name: '吴起镇会师', date: '1935年10月',    x: 370, y: 225, t: 0.90, kind: 'key', ico: '🏁',
       desc: '1935年10月19日，中央红军胜利到达陕北吴起镇，与陕北红军会师，行程二万五千里。中央红军长征胜利结束，党中央把全国革命的大本营放在了陕北。',
       tags: ['到达陕北', '二万五千里', '中央红军'] },
-    { name: '会宁会师',   date: '1936年10月',    x: 300, y: 200, t: 1.00, kind: 'end',
+    { name: '会宁会师',   date: '1936年10月',    x: 300, y: 200, t: 1.00, kind: 'end', ico: '🎖️',
       desc: '1936年10月，红军第一、二、四方面军在甘肃会宁胜利会师。至此，红军三大主力齐聚一堂，历时两年的长征胜利结束，中国革命转危为安，开启新的局面。',
       tags: ['三大主力会师', '长征胜利', '转危为安'] }
   ];
@@ -300,13 +415,60 @@
   const slider = document.getElementById('slider');
   const playBtn = document.getElementById('playBtn');
   const tlCurrent = document.getElementById('tlCurrent');
+  const speakBtn = document.getElementById('speakBtn');
 
   let active = 0;
   let playing = false;
   let progress = 0;
   let rafId = null;
 
-  // 渲染节点
+  // ===== 勋章系统 =====
+  const BADGE_KEY = 'cz_badges_v1';
+  let earned = [];
+  try { earned = JSON.parse(localStorage.getItem(BADGE_KEY) || '[]'); } catch (e) { earned = []; }
+  if (!Array.isArray(earned) || earned.length !== nodes.length) {
+    earned = new Array(nodes.length).fill(false);
+  }
+  function saveBadges() { try { localStorage.setItem(BADGE_KEY, JSON.stringify(earned)); } catch (e) {} }
+  function renderBadges() {
+    const grid = document.getElementById('badgeGrid');
+    grid.innerHTML = '';
+    let count = 0;
+    nodes.forEach((n, i) => {
+      const el = document.createElement('div');
+      el.className = 'badge' + (earned[i] ? ' earned' : '');
+      el.innerHTML = '<span class="ico">' + n.ico + '</span><span class="nm">' + n.name + '</span>';
+      el.title = earned[i] ? n.name + '（已点亮）' : n.name + '（未解锁，点击地图节点解锁）';
+      el.addEventListener('click', () => select(i, true));
+      if (earned[i]) count++;
+      grid.appendChild(el);
+    });
+    document.getElementById('badgeProgress').textContent = '已点亮 ' + count + ' / ' + nodes.length + ' 枚';
+  }
+  function earnBadge(i) {
+    if (!earned[i]) { earned[i] = true; saveBadges(); renderBadges(); }
+  }
+
+  // ===== 大事记 =====
+  function renderEvents() {
+    const list = document.getElementById('eventsList');
+    list.innerHTML = '';
+    nodes.forEach((n, i) => {
+      const el = document.createElement('div');
+      el.className = 'event';
+      el.innerHTML = '<div class="dot"></div><div class="ev-body">' +
+        '<div class="ev-date">' + n.date + '</div>' +
+        '<div class="ev-name">' + n.name + '</div>' +
+        '<div class="ev-desc">' + n.desc + '</div></div>';
+      el.addEventListener('click', () => {
+        select(i, true);
+        document.querySelector('.map-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      list.appendChild(el);
+    });
+  }
+
+  // ===== 渲染节点 =====
   nodes.forEach((n, i) => {
     const g = document.createElementNS(ns, 'g');
     g.setAttribute('class', 'node-group');
@@ -327,7 +489,7 @@
     const c = document.createElementNS(ns, 'circle');
     c.setAttribute('class', 'node');
     c.setAttribute('cx', n.x); c.setAttribute('cy', n.y);
-    c.setAttribute('r', n.kind === 'start' ? 0 : (n.kind === 'end' ? 8 : 8));
+    c.setAttribute('r', n.kind === 'start' ? 0 : 8);
     c.setAttribute('fill', n.kind === 'key' ? '#e63946' : (n.kind === 'end' ? '#d4a017' : '#c8102e'));
     c.setAttribute('stroke', '#fff');
     c.setAttribute('stroke-width', '2');
@@ -379,6 +541,7 @@
     slider.value = Math.round(progress * 1000);
     highlight(i);
     renderPanel(i);
+    earnBadge(i);
     if (jumpMarker !== false) setMarkerByProgress(progress);
   }
 
@@ -386,16 +549,15 @@
     if (playing) stopPlay();
     progress = slider.value / 1000;
     setMarkerByProgress(progress);
-    // 找到最近已到达节点
     let best = 0, bestDiff = Infinity;
     nodes.forEach((n, i) => {
       const d = Math.abs(n.t - progress);
       if (d < bestDiff) { bestDiff = d; best = i; }
     });
-    // 若进度超过了节点，高亮它；否则取它
     active = best;
     highlight(best);
     renderPanel(best);
+    earnBadge(best);
   });
 
   function stopPlay() {
@@ -406,11 +568,10 @@
 
   function play() {
     if (playing) { stopPlay(); return; }
-    // 如果已到终点，从头开始
     if (progress >= 1) { progress = 0; }
     playing = true;
     playBtn.textContent = '⏸ 暂停';
-    const speed = 0.0022; // 每帧进度增量
+    const speed = 0.0022;
     function step() {
       if (!playing) return;
       progress += speed;
@@ -424,18 +585,104 @@
       }
       slider.value = Math.round(progress * 1000);
       setMarkerByProgress(progress);
-      // 高亮最近已到达节点
       let best = 0;
       nodes.forEach((n, i) => { if (n.t <= progress) best = i; });
-      if (best !== active) { active = best; highlight(best); renderPanel(best); }
+      if (best !== active) { active = best; highlight(best); renderPanel(best); earnBadge(best); }
       rafId = requestAnimationFrame(step);
     }
     rafId = requestAnimationFrame(step);
   }
   playBtn.addEventListener('click', play);
 
-  // 初始化
+  // ===== 语音讲解 =====
+  let speaking = false;
+  speakBtn.addEventListener('click', () => {
+    if (!('speechSynthesis' in window)) { alert('您的浏览器不支持语音讲解功能'); return; }
+    if (speaking) {
+      speechSynthesis.cancel();
+      speaking = false;
+      speakBtn.textContent = '🔊 语音讲解';
+      return;
+    }
+    const n = nodes[active];
+    const u = new SpeechSynthesisUtterance(n.name + '。' + n.date + '。' + n.desc);
+    u.lang = 'zh-CN';
+    u.rate = 0.95;
+    u.onstart = () => { speaking = true; speakBtn.textContent = '⏹ 停止朗读'; };
+    u.onend = () => { speaking = false; speakBtn.textContent = '🔊 语音讲解'; };
+    u.onerror = () => { speaking = false; speakBtn.textContent = '🔊 语音讲解'; };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  });
+
+  // ===== 知识问答 =====
+  const quiz = [
+    { q: '中央红军长征于哪一年从瑞金出发？', opts: ['1933年', '1934年', '1935年', '1936年'], ans: 1 },
+    { q: '遵义会议召开的时间是？', opts: ['1934年10月', '1935年1月', '1935年6月', '1936年10月'], ans: 1 },
+    { q: '四渡赤水中的“赤水”指的是？', opts: ['金沙江', '大渡河', '赤水河', '湘江'], ans: 2 },
+    { q: '飞夺泸定桥时，攀爬铁索的勇士共有多少名？', opts: ['12名', '18名', '22名', '30名'], ans: 2 },
+    { q: '红军长征翻越的第一座大雪山是？', opts: ['夹金山', '梦笔山', '岷山', '六盘山'], ans: 0 },
+    { q: '中央红军长征历时大约多久？', opts: ['半年', '约1年', '约2年', '约3年'], ans: 1 },
+    { q: '1935年10月，中央红军到达陕北的地点是？', opts: ['会宁', '吴起镇', '延安', '瓦窑堡'], ans: 1 },
+    { q: '1936年10月，红军三大主力在哪里会师？', opts: ['吴起镇', '延安', '会宁', '腊子口'], ans: 2 },
+    { q: '中央红军长征总里程约是？', opts: ['一万里', '一万五千里', '二万五千里', '三万里'], ans: 2 },
+    { q: '湘江战役后，红军兵力锐减至约？', opts: ['8.6万人', '5万人', '3万余人', '1万余人'], ans: 2 }
+  ];
+
+  const quizBox = document.getElementById('quizBox');
+  let qIndex = 0, score = 0, answered = false;
+
+  function renderQuiz() {
+    if (qIndex >= quiz.length) {
+      let msg;
+      if (score === 10) msg = '满分！你是长征知识达人！🎖️';
+      else if (score >= 8) msg = '非常优秀！对长征了解很深入 ⭐';
+      else if (score >= 6) msg = '不错！再复习一下会更好 📖';
+      else msg = '继续加油，点击地图和大事记再学一遍 💪';
+      quizBox.innerHTML =
+        '<div class="quiz-result">' +
+        '<div class="score">' + score + ' / ' + quiz.length + '</div>' +
+        '<div class="msg">' + msg + '</div>' +
+        '<div class="quiz-actions"><button id="quizRetry">🔄 再来一次</button></div>' +
+        '</div>';
+      document.getElementById('quizRetry').addEventListener('click', resetQuiz);
+      return;
+    }
+    const item = quiz[qIndex];
+    answered = false;
+    quizBox.innerHTML =
+      '<div class="quiz-q"><span class="num">第 ' + (qIndex + 1) + ' 题</span>' + item.q + '</div>' +
+      '<div class="quiz-opts">' +
+      item.opts.map((o, i) =>
+        '<button class="opt" data-i="' + i + '">' + 'ABCD'[i] + '. ' + o + '</button>'
+      ).join('') +
+      '</div>';
+    quizBox.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => answer(parseInt(btn.dataset.i)));
+    });
+  }
+
+  function answer(i) {
+    if (answered) return;
+    answered = true;
+    const item = quiz[qIndex];
+    const btns = quizBox.querySelectorAll('.opt');
+    btns.forEach((b, idx) => {
+      b.disabled = true;
+      if (idx === item.ans) b.classList.add('correct');
+      else if (idx === i) b.classList.add('wrong');
+    });
+    if (i === item.ans) score++;
+    setTimeout(() => { qIndex++; renderQuiz(); }, 1100);
+  }
+
+  function resetQuiz() { qIndex = 0; score = 0; renderQuiz(); }
+
+  // ===== 初始化 =====
   select(0, true);
+  renderBadges();
+  renderEvents();
+  renderQuiz();
 })();
 </script>
 </body>
