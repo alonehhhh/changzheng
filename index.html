@@ -81,6 +81,7 @@
     overflow: hidden;
   }
   .map-card { flex: 1 1 640px; min-width: 320px; padding: 10px; }
+  .map-photo { margin-top: 10px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(212,160,23,.3); background: rgba(30,8,13,.6); }
   .panel { flex: 1 1 340px; min-width: 300px; display: flex; flex-direction: column; }
 
   svg { display: block; width: 100%; height: auto; }
@@ -380,6 +381,10 @@
         <g id="nodes"></g>
         <circle class="marker" id="marker" cx="720" cy="545" r="9"/>
       </svg>
+      <div class="map-photo">
+        <img src="images/long-march-map.png" alt="长征路线历史地图(美国陆军绘制,公有领域)" style="width:100%;height:auto;display:block;">
+        <div class="art-caption">📷 长征路线历史地图(美国陆军绘制,公有领域)</div>
+      </div>
     </div>
 
     <div class="panel">
@@ -429,7 +434,10 @@
     <span class="big">“</span>长征是宣言书，长征是宣传队，长征是播种机。<span class="big">”</span><br>
     每一代人都有每一代人的长征路，每一代人都要走好自己的长征路。
   </div>
-  <footer>缅怀先烈 · 传承长征精神</footer>
+  <footer>
+    缅怀先烈 · 传承长征精神<br>
+    <span style="font-size:11px;color:#8a7a68;">历史照片来源:Wikimedia Commons(泸定桥 CC BY-SA 3.0 Rolf Müller / 遵义会议会址 CC BY-SA 3.0 小小新手 / 长征出发纪念碑、长征地图为公有领域)。其余插画为原创矢量图。</span>
+  </footer>
 </div>
 
 <script>
@@ -496,6 +504,13 @@
     // 10 会宁会师：三面红旗
     '<svg viewBox="0 0 320 150" role="img" aria-label="会宁会师插画"><rect width="320" height="150" fill="#3a0a12"/><circle cx="160" cy="40" r="22" fill="#f2c94c" opacity="0.85"/><g transform="translate(120,40)"><rect x="0" y="0" width="5" height="80" fill="#3a080f"/><path d="M5 2 L 40 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(60,48)"><rect x="0" y="0" width="5" height="72" fill="#3a080f"/><path d="M5 2 L 38 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(180,48)"><rect x="0" y="0" width="5" height="72" fill="#3a080f"/><path d="M5 2 L 38 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(160,26) scale(1.3)"><path d="M 0,-13 L 2.9,-4 L 12.4,-4 L 4.7,1.5 L 7.6,10.5 L 0,4.9 L -7.6,10.5 L -4.7,1.5 L -12.4,-4 L -2.9,-4 Z" fill="#f2c94c"/></g></svg>'
   ];
+
+  // 真实历史照片（节点索引 -> 照片信息），优先于 SVG 插画显示
+  const photos = {
+    0: { src: 'images/departure-monument.jpg', alt: '中央红军长征出发纪念碑', credit: '中央红军长征出发纪念碑(于都) · 公有领域 · Wikimedia Commons' },
+    2: { src: 'images/zunyi-site.jpg', alt: '遵义会议会址', credit: '遵义会议会址 · 摄影:小小新手 · CC BY-SA 3.0 · Wikimedia Commons' },
+    5: { src: 'images/luding-bridge.jpg', alt: '泸定桥', credit: '泸定桥(四川泸定县) · 摄影:Rolf Müller · CC BY-SA 3.0 · Wikimedia Commons' }
+  };
 
   const svg = document.querySelector('svg');
   const ns = 'http://www.w3.org/2000/svg';
@@ -629,7 +644,13 @@
     pName.textContent = n.name;
     pDesc.textContent = n.desc;
     pTags.innerHTML = n.tags.map(t => '<span class="tag">' + t + '</span>').join('');
-    nodeArt.innerHTML = arts[i] + '<div class="art-caption">' + n.name + ' · ' + n.date + '</div>';
+    if (photos[i]) {
+      const ph = photos[i];
+      nodeArt.innerHTML = '<img src="' + ph.src + '" alt="' + ph.alt + '" style="width:100%;height:auto;display:block;max-height:220px;object-fit:cover;">' +
+        '<div class="art-caption">📷 ' + ph.credit + '</div>';
+    } else {
+      nodeArt.innerHTML = arts[i] + '<div class="art-caption">' + n.name + ' · ' + n.date + '</div>';
+    }
     pCounter.textContent = (i + 1) + ' / ' + nodes.length + ' · 关键节点';
     tlCurrent.innerHTML = '当前节点：<b>' + n.date + ' ' + n.name + '</b> — ' + n.tags[0];
   }
