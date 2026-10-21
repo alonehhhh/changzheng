@@ -42,6 +42,21 @@
   }
   .subtitle { font-size: 15px; color: #d8b98a; letter-spacing: 2px; }
 
+  /* 顶部画卷插画 */
+  .hero { margin: 4px 0 4px; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  .hero svg { display: block; width: 100%; height: auto; }
+
+  /* 节点配图 */
+  .node-art {
+    margin-bottom: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(212,160,23,.3);
+    background: linear-gradient(180deg, rgba(74,8,19,.6), rgba(30,8,13,.6));
+  }
+  .node-art svg { display: block; width: 100%; height: auto; }
+  .art-caption { font-size: 11.5px; color: #b8a67e; text-align: center; padding: 6px 8px; letter-spacing: 1px; }
+
   /* 统计数字 */
   .stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 24px 0 10px; }
   .stat {
@@ -286,6 +301,61 @@
     <div class="subtitle">伟大的战略转移 · 二万五千里 · 1934—1936</div>
   </header>
 
+  <div class="hero">
+    <svg viewBox="0 0 1200 300" role="img" aria-label="长征画卷:雪山、红旗与行军队伍">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a0710"/>
+          <stop offset="0.55" stop-color="#4a0a16"/>
+          <stop offset="1" stop-color="#7a1224"/>
+        </linearGradient>
+        <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a0d1c"/>
+          <stop offset="1" stop-color="#2a0710"/>
+        </linearGradient>
+        <linearGradient id="flag" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e0223a"/>
+          <stop offset="1" stop-color="#8a0b20"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="300" fill="url(#sky)"/>
+      <!-- 太阳光芒 -->
+      <circle cx="1030" cy="92" r="82" fill="#f2c94c" opacity="0.12"/>
+      <circle cx="1030" cy="92" r="56" fill="#f2c94c" opacity="0.2"/>
+      <circle cx="1030" cy="92" r="38" fill="#f2c94c" opacity="0.9"/>
+      <!-- 远山 -->
+      <polygon points="0,300 120,150 260,300" fill="#4a0a16"/>
+      <polygon points="180,300 340,120 520,300" fill="#57101d"/>
+      <polygon points="430,300 600,140 780,300" fill="#4a0a16"/>
+      <!-- 雪山群(带雪顶) -->
+      <polygon points="520,300 720,90 920,300" fill="#6b1626"/>
+      <polygon points="640,300 720,90 800,300" fill="#f6ecd9"/>
+      <polygon points="900,300 1060,140 1200,300" fill="#5a0d1c"/>
+      <polygon points="980,300 1060,140 1140,300" fill="#efe2c8"/>
+      <polygon points="0,300 200,180 380,300" fill="url(#hill)"/>
+      <!-- 红旗 -->
+      <g>
+        <rect x="150" y="60" width="7" height="200" fill="#3a080f"/>
+        <path d="M157 64 C 220 52, 250 76, 240 96 C 232 112, 190 112, 160 116 Z" fill="url(#flag)"/>
+        <path d="M160 112 C 200 108, 226 112, 240 96 C 226 118, 196 128, 160 128 Z" fill="#8a0b20"/>
+        <g transform="translate(190,86) scale(1.15)">
+          <path d="M 0,-13 L 2.9,-4 L 12.4,-4 L 4.7,1.5 L 7.6,10.5 L 0,4.9 L -7.6,10.5 L -4.7,1.5 L -12.4,-4 L -2.9,-4 Z" fill="#f2c94c"/>
+        </g>
+      </g>
+      <!-- 行军队伍剪影 -->
+      <g fill="#1c0d10">
+        <g transform="translate(300,238)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+        <g transform="translate(345,246)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+        <g transform="translate(390,238)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+        <g transform="translate(435,246)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+        <g transform="translate(478,240)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+        <g transform="translate(520,246)"><circle cx="0" cy="-16" r="7"/><rect x="-6" y="-9" width="12" height="18" rx="3"/></g>
+      </g>
+      <!-- 地面 -->
+      <rect x="0" y="284" width="1200" height="16" fill="#1c0d10"/>
+    </svg>
+  </div>
+
   <div class="stats">
     <div class="stat"><b>二万五千里</b><span>行军总里程</span></div>
     <div class="stat"><b>1 年</b><span>中央红军历时</span></div>
@@ -318,6 +388,7 @@
         <h2 id="pName"></h2>
       </div>
       <div class="panel-body">
+        <div class="node-art" id="nodeArt"></div>
         <p id="pDesc"></p>
         <div class="tags" id="pTags"></div>
         <button class="speak-btn" id="speakBtn">🔊 语音讲解</button>
@@ -400,6 +471,32 @@
       tags: ['三大主力会师', '长征胜利', '转危为安'] }
   ];
 
+  // 各节点的场景插画（SVG 矢量图，与 nodes 索引一一对应）
+  const arts = [
+    // 0 瑞金出发：红旗与五角星
+    '<svg viewBox="0 0 320 150" role="img" aria-label="瑞金出发插画"><rect width="320" height="150" fill="#3a0a12"/><circle cx="255" cy="40" r="26" fill="#f2c94c" opacity="0.85"/><g transform="translate(70,20)"><rect x="0" y="0" width="6" height="105" fill="#8a0b20"/><path d="M6 4 C 50 -2, 90 20, 78 44 C 70 62, 30 60, 6 64 Z" fill="#c8102e"/><path d="M6 60 C 40 56, 66 60, 78 44 C 70 70, 40 78, 6 80 Z" fill="#8a0b20"/></g><g transform="translate(52,48) scale(1.6)"><path d="M 0,-13 L 2.9,-4 L 12.4,-4 L 4.7,1.5 L 7.6,10.5 L 0,4.9 L -7.6,10.5 L -4.7,1.5 L -12.4,-4 L -2.9,-4 Z" fill="#f2c94c"/></g><g fill="#1c0d10" transform="translate(170,100)"><circle cx="0" cy="0" r="8"/><rect x="-7" y="6" width="14" height="22" rx="4"/></g><g fill="#1c0d10" transform="translate(200,108)"><circle cx="0" cy="0" r="8"/><rect x="-7" y="6" width="14" height="22" rx="4"/></g><g fill="#1c0d10" transform="translate(230,100)"><circle cx="0" cy="0" r="8"/><rect x="-7" y="6" width="14" height="22" rx="4"/></g></svg>',
+    // 1 血战湘江：战旗与硝烟
+    '<svg viewBox="0 0 320 150" role="img" aria-label="血战湘江插画"><rect width="320" height="150" fill="#2a0710"/><circle cx="70" cy="45" r="30" fill="#7a1224"/><circle cx="250" cy="45" r="30" fill="#7a1224"/><path d="M40,120 Q 80,70 120,120 T 200,120 T 280,120" fill="#4a0a16"/><g transform="translate(60,60)"><rect x="0" y="0" width="4" height="70" fill="#3a080f"/><path d="M4 2 L 40 12 L 4 24 Z" fill="#8a0b20"/></g><g transform="translate(250,60) scale(-1,1)"><rect x="0" y="0" width="4" height="70" fill="#3a080f"/><path d="M4 2 L 40 12 L 4 24 Z" fill="#5a0d1c"/></g><g fill="none" stroke="#f2c94c" stroke-width="2" opacity="0.7"><path d="M120,110 L120,70 M150,110 L150,64 M90,110 L90,78"/></g></svg>',
+    // 2 遵义会议：会址建筑
+    '<svg viewBox="0 0 320 150" role="img" aria-label="遵义会议插画"><rect width="320" height="150" fill="#3a0a12"/><rect x="70" y="40" width="180" height="80" fill="#6b1626"/><polygon points="70,40 160,10 250,40" fill="#8a0b20"/><rect x="150" y="70" width="24" height="50" fill="#2a0710"/><rect x="90" y="60" width="40" height="28" fill="#2a0710"/><rect x="200" y="60" width="40" height="28" fill="#2a0710"/><circle cx="160" cy="30" r="14" fill="#f2c94c"/><g transform="translate(160,30) scale(0.8)"><path d="M 0,-13 L 2.9,-4 L 12.4,-4 L 4.7,1.5 L 7.6,10.5 L 0,4.9 L -7.6,10.5 L -4.7,1.5 L -12.4,-4 L -2.9,-4 Z" fill="#fff"/></g><rect x="0" y="120" width="320" height="30" fill="#2a0710"/></svg>',
+    // 3 四渡赤水：河流与箭头
+    '<svg viewBox="0 0 320 150" role="img" aria-label="四渡赤水插画"><rect width="320" height="150" fill="#2a0710"/><path d="M0,40 C 60,20 100,60 160,45 C 220,30 260,60 320,40 L320,110 C 260,90 220,120 160,105 C 100,90 60,120 0,100 Z" fill="#4a6fa5"/><path d="M0,55 C 70,40 120,70 180,58 C 240,46 280,70 320,55" fill="none" stroke="#8fb7e0" stroke-width="3"/><g fill="none" stroke="#f2c94c" stroke-width="4" stroke-linecap="round"><path d="M40,75 L 90,75 M30,78 L 40,75 L 30,72 M90,78 L 100,75 L 90,72"/><path d="M180,88 L 240,88 M170,91 L 180,88 L 170,85 M240,91 L 250,88 L 240,85"/></g></svg>',
+    // 4 巧渡金沙江：小船
+    '<svg viewBox="0 0 320 150" role="img" aria-label="巧渡金沙江插画"><rect width="320" height="150" fill="#2a0710"/><path d="M0,50 C 80,30 140,70 320,50 L320,130 L0,130 Z" fill="#4a6fa5"/><path d="M0,60 C 90,48 160,80 320,60" fill="none" stroke="#8fb7e0" stroke-width="3"/><g transform="translate(130,55)"><path d="M-50,10 L 50,10 L 34,34 L -34,34 Z" fill="#6b3a1f"/><rect x="-8" y="-14" width="4" height="26" fill="#3a080f"/><path d="M-4,-14 L 14,-24 L -4,-2 Z" fill="#c8102e"/></g><g fill="#1c0d10" transform="translate(150,40)"><circle cx="0" cy="0" r="7"/><rect x="-6" y="6" width="12" height="18" rx="3"/></g></svg>',
+    // 5 飞夺泸定桥：铁索桥
+    '<svg viewBox="0 0 320 150" role="img" aria-label="飞夺泸定桥插画"><rect width="320" height="150" fill="#2a0710"/><polygon points="0,150 60,40 110,150" fill="#4a0a16"/><polygon points="210,150 260,40 320,150" fill="#4a0a16"/><path d="M60,55 Q 160,95 260,55" fill="none" stroke="#8a0b20" stroke-width="4"/><path d="M60,70 Q 160,110 260,70" fill="none" stroke="#5a0d1c" stroke-width="3"/><path d="M70,60 L 250,60 M70,68 L 250,68" fill="none" stroke="#3a080f" stroke-width="2"/><g fill="#f2c94c" transform="translate(150,90)"><circle cx="0" cy="-14" r="7"/><rect x="-6" y="-8" width="12" height="20" rx="3"/></g><g fill="none" stroke="#f6ecd9" stroke-width="1.5"><path d="M120,100 L 120,84 M160,104 L 160,88 M200,100 L 200,84"/></g></svg>',
+    // 6 翻越夹金山：雪山
+    '<svg viewBox="0 0 320 150" role="img" aria-label="翻越夹金山插画"><rect width="320" height="150" fill="#2a0710"/><circle cx="250" cy="40" r="24" fill="#f2c94c" opacity="0.8"/><polygon points="0,150 90,40 170,150" fill="#6b1626"/><polygon points="70,150 130,60 190,150" fill="#8a0b20"/><polygon points="130,80 170,40 210,80 170,110" fill="#f6ecd9"/><polygon points="170,150 240,50 320,150" fill="#5a0d1c"/><polygon points="210,150 240,50 270,150" fill="#efe2c8"/><g fill="#1c0d10" transform="translate(120,118)"><circle cx="0" cy="0" r="7"/><rect x="-6" y="5" width="12" height="18" rx="3"/></g><g fill="#1c0d10" transform="translate(150,124)"><circle cx="0" cy="0" r="7"/><rect x="-6" y="5" width="12" height="18" rx="3"/></g></svg>',
+    // 7 穿越草地：草地与沼泽
+    '<svg viewBox="0 0 320 150" role="img" aria-label="穿越草地插画"><rect width="320" height="150" fill="#1c2a12"/><path d="M0,80 Q 80,60 160,80 T 320,80 L320,150 L0,150 Z" fill="#2a3d1c"/><g fill="#4a6b2f"><path d="M40,90 q-6,-24 0,-38 q6,14 0,38 Z"/><path d="M100,96 q-6,-24 0,-38 q6,14 0,38 Z"/><path d="M160,90 q-6,-24 0,-38 q6,14 0,38 Z"/><path d="M220,96 q-6,-24 0,-38 q6,14 0,38 Z"/><path d="M280,90 q-6,-24 0,-38 q6,14 0,38 Z"/></g><ellipse cx="80" cy="130" rx="30" ry="8" fill="#5a7a3a" opacity="0.6"/><ellipse cx="220" cy="128" rx="26" ry="7" fill="#5a7a3a" opacity="0.6"/><g fill="#1c0d10" transform="translate(150,70)"><circle cx="0" cy="0" r="7"/><rect x="-6" y="5" width="12" height="18" rx="3"/></g></svg>',
+    // 8 腊子口：峡谷关隘
+    '<svg viewBox="0 0 320 150" role="img" aria-label="腊子口战役插画"><rect width="320" height="150" fill="#2a0710"/><polygon points="0,0 90,150 150,150" fill="#4a0a16"/><polygon points="320,0 230,150 170,150" fill="#4a0a16"/><polygon points="0,0 40,150 60,150" fill="#6b1626"/><polygon points="320,0 280,150 260,150" fill="#6b1626"/><rect x="150" y="120" width="20" height="30" fill="#5a0d1c"/><path d="M140,120 L180,120" stroke="#f2c94c" stroke-width="4"/><circle cx="160" cy="40" r="20" fill="#f2c94c" opacity="0.7"/></svg>',
+    // 9 吴起镇会师：会师红旗
+    '<svg viewBox="0 0 320 150" role="img" aria-label="吴起镇会师插画"><rect width="320" height="150" fill="#3a0a12"/><circle cx="160" cy="42" r="24" fill="#f2c94c" opacity="0.8"/><g transform="translate(90,40)"><rect x="0" y="0" width="5" height="80" fill="#3a080f"/><path d="M5 2 L 42 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(225,40)"><rect x="0" y="0" width="5" height="80" fill="#3a080f"/><path d="M5 2 L 42 12 L 5 24 Z" fill="#c8102e"/></g><g fill="#1c0d10" transform="translate(130,108)"><circle cx="0" cy="0" r="8"/><rect x="-7" y="6" width="14" height="22" rx="4"/></g><g fill="#1c0d10" transform="translate(190,108)"><circle cx="0" cy="0" r="8"/><rect x="-7" y="6" width="14" height="22" rx="4"/></g></svg>',
+    // 10 会宁会师：三面红旗
+    '<svg viewBox="0 0 320 150" role="img" aria-label="会宁会师插画"><rect width="320" height="150" fill="#3a0a12"/><circle cx="160" cy="40" r="22" fill="#f2c94c" opacity="0.85"/><g transform="translate(120,40)"><rect x="0" y="0" width="5" height="80" fill="#3a080f"/><path d="M5 2 L 40 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(60,48)"><rect x="0" y="0" width="5" height="72" fill="#3a080f"/><path d="M5 2 L 38 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(180,48)"><rect x="0" y="0" width="5" height="72" fill="#3a080f"/><path d="M5 2 L 38 12 L 5 24 Z" fill="#c8102e"/></g><g transform="translate(160,26) scale(1.3)"><path d="M 0,-13 L 2.9,-4 L 12.4,-4 L 4.7,1.5 L 7.6,10.5 L 0,4.9 L -7.6,10.5 L -4.7,1.5 L -12.4,-4 L -2.9,-4 Z" fill="#f2c94c"/></g></svg>'
+  ];
+
   const svg = document.querySelector('svg');
   const ns = 'http://www.w3.org/2000/svg';
   const nodesGroup = document.getElementById('nodes');
@@ -412,6 +509,7 @@
   const pDesc = document.getElementById('pDesc');
   const pTags = document.getElementById('pTags');
   const pCounter = document.getElementById('pCounter');
+  const nodeArt = document.getElementById('nodeArt');
   const slider = document.getElementById('slider');
   const playBtn = document.getElementById('playBtn');
   const tlCurrent = document.getElementById('tlCurrent');
@@ -531,6 +629,7 @@
     pName.textContent = n.name;
     pDesc.textContent = n.desc;
     pTags.innerHTML = n.tags.map(t => '<span class="tag">' + t + '</span>').join('');
+    nodeArt.innerHTML = arts[i] + '<div class="art-caption">' + n.name + ' · ' + n.date + '</div>';
     pCounter.textContent = (i + 1) + ' / ' + nodes.length + ' · 关键节点';
     tlCurrent.innerHTML = '当前节点：<b>' + n.date + ' ' + n.name + '</b> — ' + n.tags[0];
   }
